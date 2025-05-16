@@ -25,7 +25,7 @@ export default function About() {
                 <div className="bg-gubernatorial-light dark:bg-gubernatorial-navy/30 p-6 rounded-lg shadow-md">
                   <div className="mb-6">
                     <img 
-                      src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+                      src="/lovable-uploads/b8a9c018-13d1-4187-b93d-6c750142339d.png" 
                       alt="Governor Umaru Dikko Radda" 
                       className="w-full h-auto rounded-lg shadow-lg"
                     />
