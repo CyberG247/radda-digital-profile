@@ -9,7 +9,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center bg-gradient-to-r from-gubernatorial-light to-white dark:from-gubernatorial-charcoal dark:to-gubernatorial-navy">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-[url('/lovable-uploads/efa0c82d-58d0-4fe2-be0f-d384040d6371.png')] bg-cover bg-center opacity-10"></div>
         <div className="container mx-auto px-4 z-10 flex flex-col md:flex-row items-center">
           <div className="md:w-1/2 mb-8 md:mb-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gubernatorial-charcoal dark:text-white">

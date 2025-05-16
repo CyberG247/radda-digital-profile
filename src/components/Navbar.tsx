@@ -45,7 +45,7 @@ export default function Navbar() {
       <nav className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <span className="text-gubernatorial-navy dark:text-white font-montserrat font-bold text-xl">
-            Gov. U.D. Radda
+            Umaru Dikko Radda Ph.D.
           </span>
         </Link>
 
