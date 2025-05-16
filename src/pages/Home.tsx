@@ -32,7 +32,7 @@ export default function Home() {
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-nigeria-green shadow-xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+                  src="/lovable-uploads/0f2b732a-c50c-43bf-9488-328f41ab9ad7.png" 
                   alt="Governor Umaru Dikko Radda" 
                   className="w-full h-full object-cover"
                 />
