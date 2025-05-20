@@ -1,6 +1,12 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SectionHeading from "@/components/SectionHeading";
+import { Progress } from "@/components/ui/progress";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart";
+import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { ChartPie, ChartBar, ChartLine } from "lucide-react";
 
 export default function Projects() {
   return (
@@ -184,6 +190,233 @@ export default function Projects() {
               </div>
             </TabsContent>
           </Tabs>
+        </div>
+      </section>
+      
+      {/* Project Analytics Section - NEW */}
+      <section className="py-16 bg-white dark:bg-gubernatorial-navy/30">
+        <div className="container mx-auto px-4">
+          <SectionHeading 
+            title="Project Analytics" 
+            subtitle="Visual data representation of our projects and initiatives"
+            centered
+          />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-10">
+            {/* Project Status Distribution */}
+            <Card className="dark:bg-gubernatorial-navy/30">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <ChartPie className="h-5 w-5 text-nigeria-green" />
+                  Project Status Distribution
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer 
+                  className="aspect-square" 
+                  config={{
+                    completed: {
+                      theme: { light: "#16a34a", dark: "#22c55e" },
+                      label: "Completed",
+                    },
+                    inProgress: {
+                      theme: { light: "#eab308", dark: "#facc15" },
+                      label: "In Progress",
+                    },
+                    planning: {
+                      theme: { light: "#2563eb", dark: "#3b82f6" },
+                      label: "Planning",
+                    },
+                    ongoing: {
+                      theme: { light: "#9333ea", dark: "#a855f7" },
+                      label: "Ongoing",
+                    },
+                  }}
+                >
+                  <PieChart>
+                    <Pie
+                      data={[
+                        { name: "Completed", value: 25, fill: "var(--color-completed)" },
+                        { name: "In Progress", value: 35, fill: "var(--color-inProgress)" },
+                        { name: "Planning", value: 20, fill: "var(--color-planning)" },
+                        { name: "Ongoing", value: 20, fill: "var(--color-ongoing)" },
+                      ]}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      outerRadius={80}
+                      dataKey="value"
+                    />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <ChartLegend content={<ChartLegendContent />} />
+                  </PieChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+
+            {/* Projects by Category */}
+            <Card className="dark:bg-gubernatorial-navy/30">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <ChartBar className="h-5 w-5 text-nigeria-green" />
+                  Projects by Category
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer 
+                  className="aspect-square" 
+                  config={{
+                    projects: {
+                      theme: { light: "#16a34a", dark: "#22c55e" },
+                      label: "Number of Projects",
+                    },
+                  }}
+                >
+                  <BarChart
+                    data={[
+                      { name: "Education", projects: 42 },
+                      { name: "Healthcare", projects: 38 },
+                      { name: "Infrastructure", projects: 55 },
+                      { name: "Agriculture", projects: 33 },
+                      { name: "Economy", projects: 27 },
+                    ]}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" angle={-45} textAnchor="end" height={50} />
+                    <YAxis />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Bar dataKey="projects" name="Projects" fill="var(--color-projects)" />
+                  </BarChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+
+            {/* Yearly Project Growth */}
+            <Card className="dark:bg-gubernatorial-navy/30">
+              <CardHeader className="pb-2">
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <ChartLine className="h-5 w-5 text-nigeria-green" />
+                  Project Completion Trend
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer 
+                  className="aspect-square" 
+                  config={{
+                    completed: {
+                      theme: { light: "#16a34a", dark: "#22c55e" },
+                      label: "Completed Projects",
+                    },
+                  }}
+                >
+                  <LineChart
+                    data={[
+                      { month: "Jun 23", completed: 5 },
+                      { month: "Sep 23", completed: 12 },
+                      { month: "Dec 23", completed: 18 },
+                      { month: "Mar 24", completed: 25 },
+                      { month: "May 24", completed: 30 },
+                    ]}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 50 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" angle={-45} textAnchor="end" height={50} />
+                    <YAxis />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Line 
+                      type="monotone" 
+                      dataKey="completed" 
+                      name="Completed" 
+                      stroke="var(--color-completed)" 
+                      strokeWidth={2} 
+                      dot={{ r: 4 }}
+                      activeDot={{ r: 6 }}
+                    />
+                  </LineChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Budget Allocation & Progress Overview - Two wider cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            {/* Budget Allocation Card */}
+            <Card className="dark:bg-gubernatorial-navy/30">
+              <CardHeader>
+                <CardTitle className="text-lg">Budget Allocation by Sector (Million ₦)</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">Education</span>
+                    <span className="font-mono">₦2,500M</span>
+                  </div>
+                  <Progress value={75} className="h-2 bg-gubernatorial-light dark:bg-gubernatorial-navy/60" />
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">Healthcare</span>
+                    <span className="font-mono">₦2,100M</span>
+                  </div>
+                  <Progress value={63} className="h-2 bg-gubernatorial-light dark:bg-gubernatorial-navy/60" />
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">Infrastructure</span>
+                    <span className="font-mono">₦3,200M</span>
+                  </div>
+                  <Progress value={96} className="h-2 bg-gubernatorial-light dark:bg-gubernatorial-navy/60" />
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">Agriculture</span>
+                    <span className="font-mono">₦1,800M</span>
+                  </div>
+                  <Progress value={54} className="h-2 bg-gubernatorial-light dark:bg-gubernatorial-navy/60" />
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">Economy</span>
+                    <span className="font-mono">₦1,400M</span>
+                  </div>
+                  <Progress value={42} className="h-2 bg-gubernatorial-light dark:bg-gubernatorial-navy/60" />
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Project Impact Areas */}
+            <Card className="dark:bg-gubernatorial-navy/30">
+              <CardHeader>
+                <CardTitle className="text-lg">Project Impact Areas</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gubernatorial-light dark:bg-gubernatorial-navy/60 p-4 rounded-lg">
+                    <div className="text-3xl font-bold text-nigeria-green mb-1">23</div>
+                    <div className="text-sm text-gubernatorial-charcoal/80 dark:text-white/80">Local Government Areas Covered</div>
+                  </div>
+                  
+                  <div className="bg-gubernatorial-light dark:bg-gubernatorial-navy/60 p-4 rounded-lg">
+                    <div className="text-3xl font-bold text-nigeria-green mb-1">195+</div>
+                    <div className="text-sm text-gubernatorial-charcoal/80 dark:text-white/80">Total Projects</div>
+                  </div>
+                  
+                  <div className="bg-gubernatorial-light dark:bg-gubernatorial-navy/60 p-4 rounded-lg">
+                    <div className="text-3xl font-bold text-nigeria-green mb-1">750k+</div>
+                    <div className="text-sm text-gubernatorial-charcoal/80 dark:text-white/80">Direct Beneficiaries</div>
+                  </div>
+                  
+                  <div className="bg-gubernatorial-light dark:bg-gubernatorial-navy/60 p-4 rounded-lg">
+                    <div className="text-3xl font-bold text-nigeria-green mb-1">₦11B+</div>
+                    <div className="text-sm text-gubernatorial-charcoal/80 dark:text-white/80">Total Budget Allocated</div>
+                  </div>
+                </div>
+                
+                <div className="mt-6 text-center">
+                  <Button className="bg-nigeria-green hover:bg-nigeria-green/90">
+                    View Detailed Report
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
       
